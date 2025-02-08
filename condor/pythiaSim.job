@@ -1,0 +1,12 @@
+Universe           = vanilla
+initialDir         = /sphenix/user/tmengel/jetvn-pp2023-projections/condor
+Executable         = $(initialDir)/runPythiaJetflow.sh
+PeriodicHold       = (NumJobStarts>=1 && JobStatus == 1)
+request_memory     = 10GB
+Priority           = 20
+condorDir          = $(initialDir)
+Output             = $(condorDir)/logs/jetvn-pythia8-$INT(Process,%05d).out
+Error              = $(condorDir)/logs/jetvn-pythia8-$INT(Process,%05d).err
+Log                = /tmp/jetvn-pythia8-$ENV(USER)-$INT(Process).log
+Arguments          = "$INT(Process) 250"
+Queue 10000
